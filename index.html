@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanted: Heart Pirates</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Special+Elite&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IM Fell English', serif;
+            background-color: #f5e9d4;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23a38b6d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: #2c1810;
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .newspaper-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #fffef7;
+            border: 2px solid #2c1810;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            position: relative;
+            border-radius: 2px;
+            overflow-x: hidden;
+        }
+
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #8b0000, #d4af37, #8b0000);
+        }
+
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 2px double #2c1810;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .newspaper-header h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.2rem;
+            color: #8b0000;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .edition {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .wanted-banner {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .wanted-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.8rem;
+            color: #8b0000;
+            letter-spacing: 3px;
+            border: 6px solid #2c1810;
+            display: inline-block;
+            padding: 12px 20px;
+            transform: rotate(-2deg);
+            background-color: #fffef7;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 15px 0;
+            line-height: 1.1;
+            word-break: break-word;
+        }
+
+        .wanted-subtitle {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #8b0000;
+            line-height: 1.3;
+        }
+
+        .date-line {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-top: 1px solid #2c1810;
+            border-bottom: 1px solid #2c1810;
+            padding: 10px 0;
+            margin: 20px 0;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .headline-section {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-top: 2px solid #2c1810;
+            border-bottom: 2px solid #2c1810;
+        }
+
+        .headline-section h2 {
+            font-size: 1.3rem;
+            line-height: 1.3;
+            margin-bottom: 15px;
+            color: #2c1810;
+        }
+
+        .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #8b0000;
+            margin-top: 15px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .poster-display {
+            margin: 30px 0;
+        }
+
+        .poster-container {
+            display: none;
+        }
+
+        .poster-container.active {
+            display: block;
+        }
+
+        .wanted-card {
+            background: linear-gradient(135deg, #f5e9d4 0%, #e8d9c0 100%);
+            border: 10px solid #2c1810;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        .photo-container {
+            position: relative;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .wanted-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border: 5px solid #8b0000;
+            filter: sepia(0.8) contrast(1.1) brightness(0.9);
+            background-color: #e0d0b5;
+            transition: all 0.3s ease;
+        }
+
+        .photo-container:hover .wanted-image {
+            filter: sepia(0.6) contrast(1.2);
+        }
+
+        .enlarge-text {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background-color: rgba(139, 0, 0, 0.95);
+            color: #ffd700;
+            text-align: center;
+            padding: 8px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            border: 1px solid #ffd700;
+        }
+
+        .wanted-details {
+            padding: 15px;
+            background-color: rgba(255, 254, 247, 0.95);
+            border: 2px solid #2c1810;
+        }
+
+        .poster-header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 10px;
+        }
+
+        .poster-header h3 {
+            font-family: 'Special Elite', cursive;
+            color: #8b0000;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .maritime-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #a38b6d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #8b0000;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            font-family: 'Special Elite', cursive;
+            color: #2c1810;
+            font-weight: bold;
+            text-align: right;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .detail-value.danger {
+            color: #8b0000;
+            font-weight: bolder;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .maritime-warning {
+            background-color: #8b0000;
+            color: #ffd700;
+            text-align: center;
+            padding: 10px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 2px solid #2c1810;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+
+        .navigation-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f5eb;
+            border: 2px solid #2c1810;
+        }
+
+        .nav-button {
+            font-family: 'Special Elite', cursive;
+            background-color: #2c1810;
+            color: #fffef7;
+            border: none;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            width: auto;
+            min-width: 100px;
+            max-width: 150px;
+            border-radius: 2px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background-color: #8b0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .counter-display {
+            font-family: 'Special Elite', cursive;
+            font-size: 1rem;
+            color: #8b0000;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background-color: #ffd700;
+            padding: 8px 10px;
+            border: 3px solid #8b0000;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            min-width: 140px;
+            flex-shrink: 0;
+            margin: 0 5px;
+        }
+
+        .article-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f5eb;
+            border-left: 5px solid #8b0000;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            border-top: 2px solid #2c1810;
+            border-bottom: 2px solid #2c1810;
+        }
+
+        .article-section h4 {
+            font-family: 'Special Elite', cursive;
+            color: #8b0000;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            line-height: 1.3;
+        }
+
+        .article-section p {
+            margin-bottom: 15px;
+        }
+
+        .article-section strong {
+            color: #8b0000;
+        }
+
+        .newspaper-footer {
+            text-align: center;
+            border-top: 1px solid #2c1810;
+            padding-top: 15px;
+            font-style: italic;
+            color: #555;
+            line-height: 1.4;
+            font-size: 0.8rem;
+        }
+
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.97);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .zoom-container {
+            width: 100%;
+            max-width: 100%;
+            max-height: 95%;
+            position: relative;
+            background-color: #f5e9d4;
+            padding: 15px;
+            border: 8px solid #2c1810;
+        }
+
+        .close-zoom {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #8b0000;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            z-index: 1001;
+        }
+
+        .close-zoom:hover {
+            color: #ff0000;
+        }
+
+        .zoom-image {
+            max-width: 100%;
+            max-height: 70vh;
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #8b0000;
+            filter: sepia(0.7) contrast(1.1) brightness(0.95);
+        }
+
+        .zoom-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.9rem;
+            color: #2c1810;
+            padding: 8px;
+            background-color: rgba(245, 233, 212, 0.9);
+            border-top: 2px solid #8b0000;
+        }
+
+        @media (max-width: 768px) {
+            .navigation-controls {
+                gap: 5px;
+                padding: 10px;
+            }
+            
+            .nav-button {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+                min-width: 80px;
+                max-width: 120px;
+            }
+            
+            .counter-display {
+                font-size: 0.9rem;
+                padding: 6px 8px;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navigation-controls {
+                gap: 3px;
+                padding: 8px;
+            }
+            
+            .nav-button {
+                padding: 8px 5px;
+                font-size: 0.75rem;
+                min-width: 70px;
+                max-width: 100px;
+                letter-spacing: 0.5px;
+            }
+            
+            .counter-display {
+                font-size: 0.8rem;
+                padding: 5px 6px;
+                min-width: 100px;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .navigation-controls {
+                gap: 2px;
+                padding: 5px;
+            }
+            
+            .nav-button {
+                padding: 6px 3px;
+                font-size: 0.7rem;
+                min-width: 60px;
+                max-width: 85px;
+            }
+            
+            .counter-display {
+                font-size: 0.75rem;
+                padding: 4px 5px;
+                min-width: 90px;
+            }
+            
+            .newspaper-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .wanted-title {
+                font-size: 2.2rem;
+                padding: 10px 15px;
+            }
+            
+            .wanted-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-height: 450px) and (orientation: landscape) {
+            .wanted-image {
+                height: 200px;
+            }
+            
+            .newspaper-container {
+                padding: 10px;
+            }
+            
+            .wanted-card {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="newspaper-container">
+        <header class="newspaper-header">
+            <h1>THE HEART'S HERALD</h1>
+            <p class="edition">Wanted Posters Special Edition • 1899</p>
+        </header>
+
+        <main class="main-content">
+            <div class="wanted-banner">
+                <div class="wanted-title">WANTED</div>
+                <div class="wanted-subtitle">HEART PIRATES • DEAD OR ALIVE</div>
+            </div>
+
+            <div class="navigation-controls">
+                <button class="nav-button prev-button">« PREVIOUS</button>
+                <div class="counter-display">
+                    <span id="currentBounty">฿500,000,000</span>
+                </div>
+                <button class="nav-button next-button">NEXT »</button>
+            </div>
+
+            <div class="poster-display">
+                <div class="poster-container active" data-index="0">
+                    <div class="wanted-card">
+                        <div class="photo-container">
+                            <img src="1.png" alt="Captain" class="wanted-image">
+                            <div class="enlarge-text">CLICK TO ENLARGE</div>
+                        </div>
+
+                        <div class="wanted-details">
+                            <div class="poster-header">
+                                <h3>CAPTAIN • "HOPELESS ROMANTIC"</h3>
+                            </div>
+                            <div class="maritime-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">VESSEL:</span>
+                                    <span class="detail-value">SS AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">LAST PORT:</span>
+                                    <span class="detail-value">EMOTION SEA</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">FLAG:</span>
+                                    <span class="detail-value">HEART & CROSSBONES</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">CREW SIZE:</span>
+                                    <span class="detail-value">5 CONFIRMED</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">WEAPONS:</span>
+                                    <span class="detail-value">EXCESSIVE AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">STATUS:</span>
+                                    <span class="detail-value danger">ACTIVE & ARMED</span>
+                                </div>
+                            </div>
+                            <div class="maritime-warning">
+                                ⚓ APPROACH WITH CAUTION • EMOTIONAL CONTAGION RISK
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-container" data-index="1">
+                    <div class="wanted-card">
+                        <div class="photo-container">
+                            <img src="2.png" alt="First Mate" class="wanted-image">
+                            <div class="enlarge-text">CLICK TO ENLARGE</div>
+                        </div>
+                        <div class="wanted-details">
+                            <div class="poster-header">
+                                <h3>FIRST MATE • "THE DAYDREAMER"</h3>
+                            </div>
+                            <div class="maritime-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">VESSEL:</span>
+                                    <span class="detail-value">SS AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">LAST PORT:</span>
+                                    <span class="detail-value">CLOUD ISLAND</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">RANK:</span>
+                                    <span class="detail-value">FIRST OFFICER</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">SPECIALTY:</span>
+                                    <span class="detail-value">CHRONIC OPTIMISM</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">WEAPONS:</span>
+                                    <span class="detail-value">HOPE DISTRIBUTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">STATUS:</span>
+                                    <span class="detail-value danger">HIGH RISK</span>
+                                </div>
+                            </div>
+                            <div class="maritime-warning">
+                                ⚓ SECOND IN COMMAND • HOPE PROPAGATION EXPERT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-container" data-index="2">
+                    <div class="wanted-card">
+                        <div class="photo-container">
+                            <img src="3.png" alt="Navigator" class="wanted-image">
+                            <div class="enlarge-text">CLICK TO ENLARGE</div>
+                        </div>
+                        <div class="wanted-details">
+                            <div class="poster-header">
+                                <h3>NAVIGATOR • "HEART GUIDE"</h3>
+                            </div>
+                            <div class="maritime-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">VESSEL:</span>
+                                    <span class="detail-value">SS AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">LAST PORT:</span>
+                                    <span class="detail-value">JOY HARBOR</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">RANK:</span>
+                                    <span class="detail-value">CHIEF NAVIGATOR</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">SPECIALTY:</span>
+                                    <span class="detail-value">EMOTIONAL CHARTS</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">WEAPONS:</span>
+                                    <span class="detail-value">POSITIVE COURSE</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">STATUS:</span>
+                                    <span class="detail-value">MEDIUM RISK</span>
+                                </div>
+                            </div>
+                            <div class="maritime-warning">
+                                ⚓ CHARTS HAPPY DESTINATIONS • AVOID DIRECT ENGAGEMENT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-container" data-index="3">
+                    <div class="wanted-card">
+                        <div class="photo-container">
+                            <img src="4.png" alt="Cook" class="wanted-image">
+                            <div class="enlarge-text">CLICK TO ENLARGE</div>
+                        </div>
+                        <div class="wanted-details">
+                            <div class="poster-header">
+                                <h3>COOK • "COMFORT CHEF"</h3>
+                            </div>
+                            <div class="maritime-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">VESSEL:</span>
+                                    <span class="detail-value">SS AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">LAST PORT:</span>
+                                    <span class="detail-value">KITCHEN ISLAND</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">RANK:</span>
+                                    <span class="detail-value">SHIP'S COOK</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">SPECIALTY:</span>
+                                    <span class="detail-value">HEALING MEALS</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">WEAPONS:</span>
+                                    <span class="detail-value">COMFORT FOOD</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">STATUS:</span>
+                                    <span class="detail-value">MEDIUM RISK</span>
+                                </div>
+                            </div>
+                            <div class="maritime-warning">
+                                ⚓ HEART-HEALING CUISINE • MORALE BOOSTER
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-container" data-index="4">
+                    <div class="wanted-card">
+                        <div class="photo-container">
+                            <img src="5.png" alt="Doctor" class="wanted-image">
+                            <div class="enlarge-text">CLICK TO ENLARGE</div>
+                        </div>
+                        <div class="wanted-details">
+                            <div class="poster-header">
+                                <h3>DOCTOR • "HEART HEALER"</h3>
+                            </div>
+                            <div class="maritime-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">VESSEL:</span>
+                                    <span class="detail-value">SS AFFECTION</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">LAST PORT:</span>
+                                    <span class="detail-value">MEDICAL BAY</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">RANK:</span>
+                                    <span class="detail-value">SHIP'S SURGEON</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">SPECIALTY:</span>
+                                    <span class="detail-value">EMOTIONAL REPAIR</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">WEAPONS:</span>
+                                    <span class="detail-value">MENDING TOOLS</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">STATUS:</span>
+                                    <span class="detail-value">LOW RISK</span>
+                                </div>
+                            </div>
+                            <div class="maritime-warning">
+                                ⚓ MEDICAL SUPPORT • HEART MENDER
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="newspaper-footer">
+            <p>OFFICIAL MARINE NOTICE • PUBLISHED BY ORDER OF THE WORLD GOVERNMENT</p>
+            <p>© 1899 The Heart's Herald • All rights reserved • Price One Shilling</p>
+        </footer>
+    </div>
+
+    <div class="zoom-overlay">
+        <div class="zoom-container">
+            <button class="close-zoom">&times;</button>
+            <img class="zoom-image" src="" alt="Enlarged Wanted Poster">
+            <div class="zoom-caption">MARINE WANTED POSTER • ENLARGED VIEW</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const posters = document.querySelectorAll('.poster-container');
+            const currentBountySpan = document.getElementById('currentBounty');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const zoomOverlay = document.querySelector('.zoom-overlay');
+            const zoomImage = document.querySelector('.zoom-image');
+            const closeZoom = document.querySelector('.close-zoom');
+            const photoContainers = document.querySelectorAll('.photo-container');
+            
+            const bounties = ['฿500,000,000', '฿300,000,000', '฿250,000,000', '฿200,000,000', '฿150,000,000'];
+            
+            let currentIndex = 0;
+            const totalPosters = posters.length;
+            
+            function showPoster(index) {
+                posters.forEach(poster => {
+                    poster.classList.remove('active');
+                });
+                
+                currentIndex = index;
+                posters[index].classList.add('active');
+                currentBountySpan.textContent = bounties[index];
+                
+                prevButton.disabled = index === 0;
+                nextButton.disabled = index === totalPosters - 1;
+            }
+            
+            function nextPoster() {
+                if (currentIndex < totalPosters - 1) {
+                    showPoster(currentIndex + 1);
+                }
+            }
+            
+            function prevPoster() {
+                if (currentIndex > 0) {
+                    showPoster(currentIndex - 1);
+                }
+            }
+            
+            function openZoom(imageSrc) {
+                zoomImage.src = imageSrc;
+                zoomOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            prevButton.addEventListener('click', prevPoster);
+            nextButton.addEventListener('click', nextPoster);
+            
+            photoContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    const img = this.querySelector('.wanted-image');
+                    openZoom(img.src);
+                });
+            });
+            
+            closeZoom.addEventListener('click', function() {
+                zoomOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            zoomOverlay.addEventListener('click', function(e) {
+                if (e.target === zoomOverlay) {
+                    zoomOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && zoomOverlay.style.display === 'flex') {
+                    zoomOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    prevPoster();
+                } else if (e.key === 'ArrowRight') {
+                    nextPoster();
+                }
+            });
+            
+            showPoster(0);
+        });
+    </script>
+</body>
+</html>
